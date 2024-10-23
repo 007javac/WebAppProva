@@ -11,7 +11,7 @@ namespace WebAppProva.Controllers
         private Dictionary<string, double> _menu = new Dictionary<string, double>
         {
             { "Суп", 5.00d },
-            { "Салат", 4.00d },
+            { "Борщ", 4.00d },
             { "Стейк", 10.00d },
             { "Пицца", 8.00d },
             { "Кофе", 3.00d },
@@ -23,19 +23,23 @@ namespace WebAppProva.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var orderViewModel = new OrderViewModel();
+            return View(orderViewModel);
         }
 
-        public IActionResult OrderCalculate()
-        {
-
-            return null;
-        }
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult OrderCalculate(OrderViewModel order)
+        {
+            order.TotalPrice = _menu[order.FirstCourse] + _menu[order.SecondCourse] + _menu[order.Drink];
+            return View("Index", order);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
