@@ -38,7 +38,11 @@ namespace WebAppProva.Controllers
         [HttpPost]
         public IActionResult OrderCalculate(OrderViewModel order)
         {
-            order.TotalPrice = _menu[order.FirstCourse] + _menu[order.SecondCourse] + _menu[order.Drink];
+            if (order.FirstCourse != null && order.SecondCourse != null && order.Drink != null)
+            {
+                order.TotalPrice = _menu[order.FirstCourse] + _menu[order.SecondCourse] + _menu[order.Drink];
+
+            }
             return View("Index", order);
         }
 
