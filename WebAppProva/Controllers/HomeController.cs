@@ -18,6 +18,10 @@ namespace WebAppProva.Controllers
             return View();
         }
 
+        public IActionResult OrderCalculate()
+        {
+            return null;
+        }
         public IActionResult Privacy()
         {
             return View();
