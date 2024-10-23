@@ -23,9 +23,11 @@ namespace WebAppProva.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var orderViewModel = new OrderViewModel();
+            return View(orderViewModel);
         }
 
         public IActionResult Privacy()
@@ -33,7 +35,12 @@ namespace WebAppProva.Controllers
             return View();
         }
 
-        public IActionResult OrderCalculate() => null;
+        [HttpPost]
+        public IActionResult OrderCalculate(OrderViewModel order)
+        {
+            order.TotalPrice = _menu[order.FirstCourse] + _menu[order.SecondCourse] + _menu[order.Drink];
+            return View("Index", order);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

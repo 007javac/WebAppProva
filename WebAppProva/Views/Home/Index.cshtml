@@ -1,8 +1,50 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model WebAppProva.Models.OrderViewModel;
+@{
+    ViewData["Title"] = "Ресторан";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Ресторан</h2>
+
+<form asp-action="OrderCalculate">
+    
+    <div class="form-group">
+        <label asp-for="FirstCourse">Первое Блюдо</label>
+        <select asp-for="FirstCourse" class="form-control" required>
+            <option value=" ">Выберите первое блюдо</option>
+            <option>Суп</option>
+            <option>Борщ</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="SecondCourse">Второе Блюдо</label>
+        <select asp-for="SecondCourse" class="form-control" required>
+            <option value=" ">Выберите второе блюдо</option>
+            <option>Стейк</option>
+            <option>Пицца</option>
+        </select>
+    </div>
+
+     <div class="form-group">
+        <label asp-for="Drink">Напитки</label>
+        <select asp-for="Drink" class="form-control" required>
+            <option value=" ">Выберите напиток</option>
+            <option>Кофе</option>
+            <option>Чай</option>
+        </select>
+    </div>
+
+    </br>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+
+    <h3>Your Order:</h3>
+    @if (Model.TotalPrice > 0)
+    {
+    <ul>
+        <li>First Course: @Model.FirstCourse</li>
+        <li>Second Course: @Model.SecondCourse</li>
+        <li>Drink: @Model.Drink</li>
+    </ul>
+    <h4>Сумма: @Model.TotalPrice.ToString("F2")$</h4>
+    }
+</form>
