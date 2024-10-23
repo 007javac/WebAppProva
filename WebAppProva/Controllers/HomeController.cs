@@ -8,6 +8,16 @@ namespace WebAppProva.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private Dictionary<string, double> _menu = new Dictionary<string, double>
+        {
+            { "Суп", 5.00d },
+            { "Борщ", 4.00d },
+            { "Стейк", 10.00d },
+            { "Пицца", 8.00m },
+            { "Кофе", 3.00d },
+            { "Чай", 2.00d }
+        };
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
