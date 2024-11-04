@@ -18,7 +18,7 @@ namespace WebAppProva.Controllers
             { "„ай", 2.00d }
         };
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger <HomeController> logger)
         {
             _logger = logger;
         }
